@@ -30,3 +30,24 @@ class Producto:
     """
     
     _contador = 1000
+    
+    def __init__(self, nombre: str, descripcion: str, precio: float,
+                 cantidad: int, categoria: Categoria):
+        """
+        Inicializa un producto.
+        """
+        if not nombre or not nombre.strip():
+            raise ValueError("El nombre no puede ser vacio")
+        if precio < 0:
+            raise ValueError("El precio no puede ser negativo") 
+        if cantidad < 0:
+            raise ValueError("La cantidad no puede ser negativa")
+            
+        Producto._contador += 1
+        self.id_producto = Producto._contador
+        self.nombre = nombre.strip()
+        self.descripcion = descripcion.strip()
+        self.precio = precio
+        self.cantidad = cantidad
+        self.categoria = categoria
+        self.fecha_creacion = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
